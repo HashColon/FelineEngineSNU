@@ -1,0 +1,38 @@
+{
+  "distExp": {
+    "range": 3000,
+    "angles": [ 0, 30, 54, 90 ],
+    "resultDir": "/home/cadit/WTK/FelineExp/MonteCarloTest"
+  },
+  "angleExp": {
+    "distances": [ 0, 500, 1000, 4000 ],
+    "resultDir": "/home/cadit/WTK/FelineExp/MonteCarloTest"
+  },
+  "A_Info": {
+    "lon": 127,
+    "lat": 35,
+    "xtdp": 1000,
+    "xtds": 500,
+    "heading": 0
+  },
+  "B_Info": {
+    "xtdp": 1000,
+    "xtds": 500
+  },
+  "JsOpt": {
+    "domainUnit": 0.1,
+    "domainSize": 3.0,
+    "epsilon": 0.000001
+  },
+  "WsOpt": {
+    "domainUnit": 1.0,
+    "domainSize": 3.0,
+    "epsilon": 0.000001
+  },
+  "Feline": {
+    "GeoDistance": {
+      "baseLocation": [ 127.0016985, 37.5642135 ],
+      "defaultDistanceType": "Haversine"
+    }
+  }
+}

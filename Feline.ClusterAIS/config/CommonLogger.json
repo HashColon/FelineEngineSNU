@@ -1,0 +1,14 @@
+{
+  "Log": {
+    "enableLogScreen": true,
+    "enableLogFile": true,
+    "enableErrorScreen": true,
+    "enableErrorFile": true,
+    "enableDebugScreen": false,
+    "enableDebugFile": true,
+    "enableMessageScreen": true,
+    "logDir": "-",
+    "errorLogDir": "-",
+    "verboseLvl": 5
+  }
+}

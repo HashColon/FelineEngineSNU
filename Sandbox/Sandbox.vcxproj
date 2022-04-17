@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="DebugWSL|x64">
+      <Configuration>DebugWSL</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseWSL|x64">
+      <Configuration>ReleaseWSL</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{6f02eba0-e4d4-4fab-b2a2-1d0bd328a508}</ProjectGuid>
+    <Keyword>Linux</Keyword>
+    <RootNamespace>Sandbox</RootNamespace>
+    <MinimumVisualStudioVersion>15.0</MinimumVisualStudioVersion>
+    <ApplicationType>Linux</ApplicationType>
+    <ApplicationTypeRevision>1.0</ApplicationTypeRevision>
+    <TargetLinuxPlatform>Generic</TargetLinuxPlatform>
+    <LinuxProjectType>{2238F9CD-F817-4ECC-BD14-2524D2669B35}</LinuxProjectType>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <RemoteRootDir>~/WTK/Projects/CPP/Feline</RemoteRootDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugWSL|x64'" Label="Configuration">
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <RemoteRootDir>~/WTK/Projects/CPP/Feline</RemoteRootDir>
+    <PlatformToolset>WSL_1_0</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <RemoteRootDir>~/WTK/Projects/CPP/Feline</RemoteRootDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseWSL|x64'" Label="Configuration">
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <RemoteRootDir>~/WTK/Projects/CPP/Feline</RemoteRootDir>
+    <PlatformToolset>WSL_1_0</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Label="Shared" />
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>$(ProjectDir);$(SolutionDir);$(SolutionDir)/ext</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugWSL|x64'">
+    <IncludePath>$(ProjectDir);$(SolutionDir);$(SolutionDir)/ext</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>$(ProjectDir);$(SolutionDir);$(SolutionDir)/ext</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseWSL|x64'">
+    <IncludePath>$(ProjectDir);$(SolutionDir);$(SolutionDir)/ext</IncludePath>
+  </PropertyGroup>
+  <ItemGroup>
+    <ClCompile Include="DistanceTest.cpp" />
+    <ClCompile Include="EmdTest.cpp" />
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FelineEngine\FelineEngine.vcxproj">
+      <Project>{75343262-6c4b-47dd-98fc-d9e72a76f9fc}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="config\CommonLogger.json" />
+    <None Include="config\Sandbox.json" />
+    <None Include="config\DistanceTest.json" />
+  </ItemGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>%(ClCompile.AdditionalIncludeDirectories);/usr/include/eigen3;</AdditionalIncludeDirectories>
+      <CppLanguageStandard>c++17</CppLanguageStandard>
+      <AdditionalOptions>-fPIC %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link />
+    <RemotePreBuildEvent>
+      <Command>
+      </Command>
+    </RemotePreBuildEvent>
+    <RemotePostBuildEvent>
+      <Command>cp $(RemoteProjectDir)/config/* $(RemoteOutDir)</Command>
+    </RemotePostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugWSL|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>%(ClCompile.AdditionalIncludeDirectories);/usr/include/eigen3;</AdditionalIncludeDirectories>
+      <CppLanguageStandard>c++17</CppLanguageStandard>
+      <AdditionalOptions>-fPIC %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link />
+    <RemotePreBuildEvent>
+      <Command>
+      </Command>
+    </RemotePreBuildEvent>
+    <RemotePostBuildEvent>
+      <Command>
+      </Command>
+    </RemotePostBuildEvent>
+    <PreBuildEvent>
+      <Command>xcopy /s /Y $(ProjectDir)\config $(OutDir)</Command>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>%(ClCompile.AdditionalIncludeDirectories);/usr/include/eigen3;</AdditionalIncludeDirectories>
+      <CppLanguageStandard>c++17</CppLanguageStandard>
+      <AdditionalOptions>-fPIC -fopenmp %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <AdditionalOptions>-fopenmp %(AdditionalOptions)</AdditionalOptions>
+      <Trace>false</Trace>
+      <ShowProgress>false</ShowProgress>
+      <VerboseOutput>false</VerboseOutput>
+    </Link>
+    <RemotePreBuildEvent>
+      <Command>
+      </Command>
+    </RemotePreBuildEvent>
+    <RemotePostBuildEvent>
+      <Command>cp $(RemoteProjectDir)/config/* $(RemoteOutDir)</Command>
+    </RemotePostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseWSL|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>%(ClCompile.AdditionalIncludeDirectories);/usr/include/eigen3;</AdditionalIncludeDirectories>
+      <CppLanguageStandard>c++17</CppLanguageStandard>
+      <AdditionalOptions>-fPIC -fopenmp %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <AdditionalOptions>-fopenmp %(AdditionalOptions)</AdditionalOptions>
+    </Link>
+    <RemotePreBuildEvent>
+      <Command>
+      </Command>
+    </RemotePreBuildEvent>
+    <RemotePostBuildEvent>
+      <Command>
+      </Command>
+    </RemotePostBuildEvent>
+    <PreBuildEvent>
+      <Command>xcopy /s /Y $(ProjectDir)\config $(OutDir)</Command>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets" />
+</Project>

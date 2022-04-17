@@ -1,0 +1,94 @@
+{
+  "experimentName": "BlendedMetric",
+  "experimentComments": "",
+  "enableEvaluation": true,
+  "enableBuildReportFiles": true,
+  "enableScreenResults": false,
+  "enableExportDistMatrix": true,
+  "enablePreComputedDistMat": true,
+  "inputDir": "/home/cadit/WTK/FelineExp/InputData/BusanJeju",
+  "outputDir": "/home/cadit/WTK/FelineExp/ExpReports2",
+  "predefinedLabelPath": "",
+  "clusteringMethodName": "DistanceBasedDBSCAN",
+  "measuringMethodName": "DtwXtd_Blended",
+  "trajectoryTypeName": "XYXtdList",
+  "reptModeRadius": 1000,
+  "enableUniformSampling": true,
+  "UniformSamplingNumber": 31,  
+  
+  "Feline": {
+    "GeoDistance": {
+      "baseLocation": [
+        127.002,
+        37.5642
+      ],
+      "defaultDistanceType": "Haversine"
+    },
+    "TrajectoryDistanceMeasure": {
+      "Enable_ReversedSequence": true,
+      "LCSS": {
+        "Epsilon": 1000.0,
+        "Delta": 3.0
+      },
+      "ProjectedPCA": {
+        "PcaDimension": 0,
+        "Enable_AutoPca": true
+      },
+      "ModifiedHausdorff": {
+        "NeighborhoodWindowSize": 0.1,
+        "InlierPortion": 0.8
+      }
+    },
+    "XtdTrajectoryDistanceMeasure": {
+      "Enable_ReversedSequence": true,
+      "DtwXtd_JS": {
+        "MonteCarloDomainUnit": 0.3,
+        "MonteCarloDomainSize": 3.0,
+        "MonteCarloErrorEpsilon": 0.000001
+      },
+      "DtwXtd_EMD": {
+        "MonteCarloDomainUnit": 0.3,
+        "MonteCarloDomainSize": 3.0,
+        "MonteCarloErrorEpsilon": 0.000001
+      },
+      "DtwXtd_Blended": {
+        "JsDomainUnit": 0.3,
+        "JsDomainSize": 3.0,
+        "JsErrorEpsilon": 0.000001,
+        "WsDomainUnit": 1.0,
+        "WsDomainSize": 3.0,
+        "WsErrorEpsilon": 0.000001,
+        "PfXtdSigmaRatio": 0.0,
+        "Coeff_Euclidean": 0.0,
+        "Coeff_JS": 4328.08,
+        "Coeff_EMD": 1.0,
+        "Coeff_PF": 0.0
+      }
+    }
+  },
+  "Clustering": {
+    "NJW_XYList": {
+      "similaritySigma": 5000.0,
+      "k": 5,
+      "kmeansEpsilon": 0.001,
+      "kmeansIteration": 100
+    },
+    "DistanceBasedDBSCAN_XYList": {
+      "minPts": 5,
+      "DbscanEpsilon": 1000.0,
+      "Verbose": true
+    },
+    "NJW_XYXtdList": {
+      "similaritySigma": 5000.0,
+      "k": 9,
+      "kmeansEpsilon": 0.01,
+      "kmeansIteration": 100
+    },
+    "DistanceBasedDBSCAN_XYXtdList": {
+      "minPts": 5,
+      "DbscanEpsilon": 1500.0,
+      "Verbose": true
+    }
+  }
+}
+
